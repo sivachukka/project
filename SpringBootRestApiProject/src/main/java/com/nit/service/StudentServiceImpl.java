@@ -43,6 +43,9 @@ public class StudentServiceImpl implements StudentService{
 		Student s1=repo.findById(id).get();
 		s1.setSname(s.getSname());
 		s1.setSaddr(s.getSaddr());
+		s1.setSemail(s.getSemail());
+		s1.setSphone(s.getSphone());
+		s1.setAge(s.getAge());
 		repo.save(s1);
 		return s1;
 	}

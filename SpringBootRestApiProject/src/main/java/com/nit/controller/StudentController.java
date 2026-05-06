@@ -3,6 +3,7 @@ package com.nit.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,9 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.nit.entity.Student;
 import com.nit.service.StudentService;
 
+import jakarta.validation.Valid;
+
 
 @RestController
 @RequestMapping("/student")
+@CrossOrigin
 public class StudentController {
 	@Autowired
 	private StudentService service;
@@ -35,8 +39,9 @@ public class StudentController {
 		return service.getStudentById(id);
 	}
 	@PostMapping("/saveStudent")
-	public void saveStudent(@RequestBody Student s) {
+	public String saveStudent(@Valid @RequestBody Student s) {
 		service.savestudent(s);
+		return "saved";
 	}
 	
 	@PutMapping("/updateStudent/{id}")
